@@ -20,9 +20,9 @@ This is the main file where we use our generated JavaScript file by grammar.jiso
 ----
 node lang_analyser.js sampleText
 ----
-*Note:* Provide the input in text file. Here it is sampleText.
+*Note:* Provide the input in text file. Here, it is sampleText.
 
-====For Example:
+===For Example:
 ----
 input:
 
