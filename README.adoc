@@ -1,0 +1,102 @@
+= Grammar Semantic Analyser
+
+== Description
+Grammar Semantic Analyser *English* language sentences but we can do the same thing for other languages as well. It uses javascript parser link:http://zaa.ch/jison/[Jison] for parsing English sentences.
+
+== Settings to run project:
+
+Run the *npm install*.
+
+=== 1. grammar.jison :
+
+In this file we give context-free grammar. After executing this file with Jison, it outputs a JavaScript file(in this case grammar.js) capable of parsing the language described by that grammar. We can use the generated script to parse inputs and accept, reject or perform actions. To generate script from grammar.jison file run the give command to the terminal:
+----
+jison grammar.jison
+----
+
+=== 2. lang_analyser :
+
+This is the main file where we use our generated JavaScript file by grammar.jison. It takes as file with valid English sentences(here it is *sampleText*)in it. To run this use the given command to the terminal:
+----
+node lang_analyser.js sampleText
+----
+*Note:* Provide the input in text file. Here it is sampleText.
+
+====For Example:
+----
+input:
+
+ram likes tea.
+ram likes coffee.
+ram hates butter.
+ram hates cheese.
+
+output:
+
+ram likes tea and coffee. ram hates butter and cheese.
+
+----
+----
+input:
+
+ram likes tea.
+ram likes coffee.
+ram likes biscuits.
+ram hates butter.
+ram hates cheese.
+
+output:
+
+ram likes tea, coffee and biscuits. ram hates butter and cheese.
+
+----
+----
+input:
+
+ram likes sita.
+sita likes ram.
+ram likes coffee.
+ram hates butter.
+ram hates cheese.
+
+
+output:
+
+ram likes sita, tea and coffee.
+ram hates butter and cheese.
+sita likes ram.
+
+----
+----
+input:
+
+ram likes sita.
+ram also likes coffee.
+ram hates butter.
+ram also hates cheese.
+
+
+output:
+
+ram likes tea and coffee.
+ram hates butter and cheese.
+sita likes ram.
+
+----
+----
+input:
+
+ram also likes sita.
+sita likes ram.
+ram likes coffee.
+ram hates butter.
+ram hates cheese.
+
+
+output:
+
+SEMANTIC ERROR:
+
+ram also likes sita. <- also appeared before context.
+
+----
