@@ -22,7 +22,7 @@ node lang_analyser.js sampleText
 ----
 *Note:* Provide the input in text file. Here, it is sampleText.
 
-===For Example:
+=== For Example:
 ----
 input:
 

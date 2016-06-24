@@ -1,8 +1,7 @@
 {
-  "name": "language-parser",
+  "name": "grammar-semantic-analyser",
   "version": "1.0.0",
   "description": "Analyse the grammar and creates new single or multiple sentences after joining them.",
-  "main": "index.js",
   "scripts": {
     "test": "mocha tests/*test.js",
     "preinstall": "npm install jison -g"

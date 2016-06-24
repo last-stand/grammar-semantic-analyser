@@ -1,4 +1,5 @@
 var fs = require("fs");
+var utils = require('./utils').utils;
 var ERROR_TEMPLATE = 'error: _FILE_: No such file or directory';
 var main = require('./grammar.js').main;
 var inputFile = process.argv.slice(1);
@@ -10,4 +11,5 @@ var getParsedData = function() {
 }
 
 var parsedData = getParsedData();
-console.log(parsedData);
+console.log(JSON.stringify(parsedData));
+utils.coordinatingConjugater(parsedData);

@@ -1,0 +1,151 @@
+[
+  {
+  "sentences": [
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["tea"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["coffee"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "hates",
+      "object": {
+        "noun": ["butter"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "hates",
+      "object": {
+        "noun": ["cheese"]
+      },
+      "fullstop": "."
+    }]
+  },
+  {
+  "sentences": [
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["tea"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["coffee"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["biscuits"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "hates",
+      "object": {
+        "noun": ["butter"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "hates",
+      "object": {
+        "noun": ["cheese"]
+      },
+      "fullstop": "."
+    }]
+  },
+  {
+  "sentences": [
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["Sita"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Sita"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["Ram"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
+        "noun": ["coffee"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "hates",
+      "object": {
+        "noun": ["butter"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "hates",
+      "object": {
+        "noun": ["cheese"]
+      },
+      "fullstop": "."
+    }]
+  }
+]
