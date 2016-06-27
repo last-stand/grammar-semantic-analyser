@@ -74,11 +74,12 @@ ram likes sita.
 ram also likes coffee.
 ram hates butter.
 ram also hates cheese.
+sita likes ram.
 
 
 output:
 
-ram likes tea and coffee.
+ram likes sita and coffee.
 ram hates butter and cheese.
 sita likes ram.
 

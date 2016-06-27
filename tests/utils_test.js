@@ -26,4 +26,11 @@ describe('| Semantic Analyser |',function(){
          done();
   		})
     })
+
+    describe(" #should merge similar sentences which has 'also' using ',' and 'and' in compound objects",function(){
+      it("should return 'Ram likes tea, coffee and biscuits. Ram hates butter and cheese.'",function(done){
+         expect(utils.coordinatingConjugater(sampleParsedData[3])).to.equal("Ram likes Sita and coffee. Ram hates butter and cheese. Sita likes Ram.");
+         done();
+  		})
+    });
 });
