@@ -63,8 +63,8 @@ ram hates cheese.
 output:
 
 ram likes sita, tea and coffee.
-ram hates butter and cheese.
 sita likes ram.
+ram hates butter and cheese.
 
 ----
 ----

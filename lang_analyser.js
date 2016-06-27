@@ -11,5 +11,4 @@ var getParsedData = function() {
 }
 
 var parsedData = getParsedData();
-console.log(JSON.stringify(parsedData));
-utils.coordinatingConjugater(parsedData);
+console.log(utils.coordinatingConjugater(parsedData));

@@ -3,10 +3,29 @@ var fs = require('fs');
 var utils = {};
 
 utils.coordinatingConjugater = function(input){
+    checkSemanticError(input);
     return _.trim(_.reduce(_.compact(sentenceAnalyser(input.sentences)), sentenceMaker, ''));
 }
 
-var sentenceAnalyser = function (sentences) {
+var checkSemanticError =  function(input){
+  var sentence = input.sentences[0];
+  var subject = sentence.subject.noun;
+  var adverb = sentence.adverb;
+  var verb = sentence.verb;
+  var obj = sentence.object.noun;
+  var fullstop = sentence.fullstop;
+  if(adverb){
+    var message = sentenceFormatter(subject, adverb, verb, obj, fullstop)+"<- also appeared before context.";
+    throw new utils.SemanticError(message, "SEMANTIC ERROR");
+  }
+}
+
+utils.SemanticError = function(message, name){
+   this.message = message;
+   this.name = name;
+}
+
+var sentenceAnalyser = function (sentences){
     var analysedSentences = [];
     sentences.forEach(function(sentence,index){
       var indexOfExistingSentence = getIndexOfExistSentence(analysedSentences, sentence);
@@ -30,14 +49,14 @@ var sentenceMaker = function(paragraph, sentence){
     var obj = sentence.object.noun;
     var last = obj.pop();
     obj = obj.length ? obj.join(', ').concat(" and " + last) : last;
-    return paragraph + ' ' + sentenceFormatter(sentence.subject.noun,sentence.verb, obj, sentence.fullstop);
+    return paragraph + ' ' + sentenceFormatter(sentence.subject.noun, null,sentence.verb, obj, sentence.fullstop);
 };
 
-var sentenceFormatter = function(noun, verb, object, fullstop){
-  return [noun, verb, object].join(' ') + fullstop;
+var sentenceFormatter = function(noun, adverb, verb, object, fullstop){
+  return _.compact([noun, adverb, verb, object]).join(' ') + fullstop;
 };
 
-utils.jsonParser = function(filename) {
+utils.jsonParser = function(filename){
   return JSON.parse(fs.readFileSync(filename,'utf-8'));
 }
 
