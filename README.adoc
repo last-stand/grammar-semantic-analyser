@@ -1,7 +1,7 @@
 = Grammar Semantic Analyser
 
 == Description
-Grammar Semantic Analyser *English* language sentences but we can do the same thing for other languages as well. It uses javascript parser link:http://zaa.ch/jison/[Jison] for parsing English sentences.
+Grammar Semantic Analyser analyses *English* language sentences and conjugate multiple sentences into single simple sentence(depends on sentences' structure). But we can do the same thing for other languages as well. It uses javascript parser link:http://zaa.ch/jison/[Jison] for parsing English sentences.
 
 == Settings to run project:
 
@@ -16,11 +16,11 @@ jison grammar.jison
 
 === 2. lang_analyser :
 
-This is the main file where we use our generated JavaScript file by grammar.jison. It takes as file with valid English sentences(here it is *sampleText*)in it. To run this use the given command to the terminal:
+This is the main file where we use our generated JavaScript file by grammar.jison. It takes as file with valid English sentences(here it is *sampleText*) in it. To run this use the given command to the terminal:
 ----
 node lang_analyser.js sampleText
 ----
-*Note:* Provide the input in text file. Here, it is sampleText.
+*Note:* Provide the input in text file as shown above.
 
 === For Example:
 ----

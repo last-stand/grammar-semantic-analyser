@@ -123,6 +123,16 @@
       },
       "verb": "likes",
       "object": {
+        "noun": ["tea"]
+      },
+      "fullstop": "."
+    },
+    {
+      "subject": {
+        "noun": "Ram"
+      },
+      "verb": "likes",
+      "object": {
         "noun": ["coffee"]
       },
       "fullstop": "."

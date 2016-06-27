@@ -20,5 +20,10 @@ describe('| Semantic Analyser |',function(){
          expect(utils.coordinatingConjugater(sampleParsedData[1])).to.equal("Ram likes tea, coffee and biscuits. Ram hates butter and cheese.");
          done();
   		})
+
+      it("should return 'Ram likes sita, tea and coffee. Sita likes Ram. Ram hates butter and cheese.'",function(done){
+         expect(utils.coordinatingConjugater(sampleParsedData[2])).to.equal("Ram likes Sita, tea and coffee. Sita likes Ram. Ram hates butter and cheese.");
+         done();
+  		})
     })
 });

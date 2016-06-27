@@ -3,41 +3,39 @@ var fs = require('fs');
 var utils = {};
 
 utils.coordinatingConjugater = function(input){
-    return _.trimEnd(_.reduce(_.compact(sentenceAnalyser(input.sentences)), sentenceReducer, ''));
+    return _.trim(_.reduce(_.compact(sentenceAnalyser(input.sentences)), sentenceMaker, ''));
 }
 
 var sentenceAnalyser = function (sentences) {
-  var analysedSentences = [];
-  sentences.forEach(function(element,index,arr){
-      if(analysedSentences[index-1]){
-        if(element.subject.noun == arr[index-1].subject.noun && element.verb == arr[index-1].verb){
-          element.object.noun = arr[index-1].object.noun.concat(element.object.noun);
-          analysedSentences[index-1] = 0;
-        }
-      }
-      analysedSentences.push(element);
+    var analysedSentences = [];
+    sentences.forEach(function(sentence,index){
+      var indexOfExistingSentence = getIndexOfExistSentence(analysedSentences, sentence);
+      if(indexOfExistingSentence < 0)
+        analysedSentences.push(sentence);
+      else
+        analysedSentences[indexOfExistingSentence].object.noun.push(sentence.object.noun[0]);
     });
     return analysedSentences;
 }
 
-var sentenceReducer = function(paragraph, sentence){
+var getIndexOfExistSentence = function(analysedSentences, sentence){
+    return _.reduce(analysedSentences, function(resultIndex, element, index){
+      if(_.isEqual(element.subject.noun, sentence.subject.noun) && _.isEqual(element.verb, sentence.verb))
+        return index;
+      return resultIndex;
+    }, -1);
+}
+
+var sentenceMaker = function(paragraph, sentence){
     var obj = sentence.object.noun;
-    obj = [obj, obj.splice(obj.length-2, 2)];
-    if(obj[1].length == 2){
-      obj[1].splice(obj[1].length-1, 0, "and");
-    }
-    return paragraph + sentenceFormatter(sentence.subject.noun,sentence.verb, obj, sentence.fullstop);
+    var last = obj.pop();
+    obj = obj.length ? obj.join(', ').concat(" and " + last) : last;
+    return paragraph + ' ' + sentenceFormatter(sentence.subject.noun,sentence.verb, obj, sentence.fullstop);
 };
 
 var sentenceFormatter = function(noun, verb, object, fullstop){
-  return _.flattenDeep(_.compact([noun, verb, addPrefix(object[0],',').join(' '), object[1]])).join(' ') + fullstop + ' ';
+  return [noun, verb, object].join(' ') + fullstop;
 };
-
-var addPrefix = function(array, prefix) {
-  return _.map(array, function(element) {
-    return element + prefix;
-  });
-}
 
 utils.jsonParser = function(filename) {
   return JSON.parse(fs.readFileSync(filename,'utf-8'));
