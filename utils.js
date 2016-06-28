@@ -3,21 +3,7 @@ var fs = require('fs');
 var utils = {};
 
 utils.coordinatingConjugater = function(input){
-    checkSemanticError(input);
     return _.trim(_.reduce(_.compact(sentenceAnalyser(input.sentences)), sentenceMaker, ''));
-}
-
-var checkSemanticError =  function(input){
-  var sentence = input.sentences[0];
-  var subject = sentence.subject.noun;
-  var adverb = sentence.adverb;
-  var verb = sentence.verb;
-  var obj = sentence.object.noun;
-  var fullstop = sentence.fullstop;
-  if(adverb){
-    var message = sentenceFormatter(subject, adverb, verb, obj, fullstop)+"<- also appeared before context.";
-    throw new utils.SemanticError(message, "SEMANTIC ERROR");
-  }
 }
 
 utils.SemanticError = function(message, name){
@@ -29,12 +15,26 @@ var sentenceAnalyser = function (sentences){
     var analysedSentences = [];
     sentences.forEach(function(sentence,index){
       var indexOfExistingSentence = getIndexOfExistSentence(analysedSentences, sentence);
-      if(indexOfExistingSentence < 0)
+      if(indexOfExistingSentence < 0){
+        checkSemanticError(sentence);
         analysedSentences.push(sentence);
+      }
       else
         analysedSentences[indexOfExistingSentence].object.noun.push(sentence.object.noun[0]);
     });
     return analysedSentences;
+}
+
+var checkSemanticError =  function(sentence){
+  var subject = sentence.subject.noun;
+  var adverb = sentence.adverb;
+  var verb = sentence.verb;
+  var obj = sentence.object.noun;
+  var fullstop = sentence.fullstop;
+  if(adverb){
+    var message = sentenceFormatter(subject, adverb, verb, obj, fullstop)+"<- also appeared before context.";
+    throw new utils.SemanticError(message, "SEMANTIC ERROR");
+  }
 }
 
 var getIndexOfExistSentence = function(analysedSentences, sentence){
